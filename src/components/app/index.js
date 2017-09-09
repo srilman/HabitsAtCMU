@@ -6,12 +6,14 @@ import { teal400 } from 'material-ui/styles/colors';
 
 import AppBar from 'material-ui/AppBar';
 import styles from './styles.scss';
-//import MainDrawer from '../drawer';
+import DrawerContent from '../drawer';
 import Dashboard from '../dashboard';
-import MenuItem from 'material-ui/MenuItem';
-import Drawer from 'material-ui/Drawer';
-import RaisedButton from 'material-ui/RaisedButton';
+//import MenuItem from 'material-ui/MenuItem';
+//import RaisedButton from 'material-ui/RaisedButton';
 import { auth, provider } from '../../firebase';
+import Drawer from 'material-ui/Drawer';
+
+
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -26,6 +28,7 @@ export default class App extends React.Component {
         this.state = {
             user: null,
             open: false,
+            dialog: false,
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.login = this.login.bind(this);
@@ -63,7 +66,20 @@ export default class App extends React.Component {
             });
     }
 
+    handleOpen = () => {
+        this.setState({dialog: true});
+    };
+
+    handleClose = () => {
+        this.setState({dialog: false});
+    };
+
     render() {
+        const contentStyle = {  transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
+
+        if (this.state.open) {
+            contentStyle.marginLeft = 320;
+        }
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
@@ -73,15 +89,21 @@ export default class App extends React.Component {
                             title= { 'Habits at CMU' }
                             onLeftIconButtonTouchTap={ this.handleToggle }
                         />
-                        <div className={styles.container}>
-                            <div className="wrapper">
-                                {this.state.user ?
-                                    <RaisedButton onClick={this.logout}>Log Out</RaisedButton>
-                                    :
-                                    <RaisedButton onClick={this.login}>Log In</RaisedButton>
-                                }
-                            </div>
-                            <Dashboard />
+                        <div
+                            className={styles.container}
+                            style={contentStyle}
+                        >
+                            {this.state.user ?
+                                <Dashboard
+                                    dialog = {this.state.dialog}
+                                    handleOpen = {this.handleOpen}
+                                    handleClose = {this.handleClose}
+                                />
+                                :
+                                <div className="wrapper">
+                                    <p>You must be logged in. Please login on the left.</p>
+                                </div>
+                            }
                         </div>
                         <Drawer
                             docked={false}
@@ -89,8 +111,11 @@ export default class App extends React.Component {
                             open={this.state.open}
                             onRequestChange={(open) => this.setState({open})}
                         >
-                            <MenuItem>Menu Item</MenuItem>
-                            <MenuItem>Menu Item 2</MenuItem>
+                            <DrawerContent
+                                user={this.state.user}
+                                login= {() => this.login()}
+                                logout= {() => this.logout()}
+                            />
                         </Drawer>
                     </div>
                 </div>
