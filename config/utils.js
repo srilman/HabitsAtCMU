@@ -26,16 +26,7 @@ exports.extractHTML = ({minify, isDev, host, port }) => {
             name: 'description',
             content: 'A better default template for html-webpack-plugin.',
         }],
-        title: 'Webpack Demo',
-        scripts: [
-            {
-                src: 'https://apis.google.com/js/client.js',
-                type: 'text/javascript',
-                async: '',
-                defer: '',
-                onload: "this.onload=function(){ gapi. }"
-            }
-        ],
+        title: 'Habits At CMU',
     };
 
     const devServer = isDev ? {devServer: `http://${host}:${port}`} : {};
