@@ -1,12 +1,9 @@
+import os
+import random
+import shutil
 import tensorflow as tf
 import pandas as pd
 import numpy as np
-import os
-import matplotlib
-import matplotlib.pyplot as plt
-import random
-import tensorflow as tf
-import shutil
 
 random.seed(111)
 rng = pd.date_range(start='2000', periods=12, freq='M')
