@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 random.seed(111)
-rng = pd.date_range(start='2000', periods=12, freq='M')
+rng = pd.date_range(start='2000', periods=10, freq='M')
 
 def create_time_series():
     x = pd.Series(np.random.uniform(-10, 10, size=len(rng)), rng).cumsum()
@@ -19,8 +19,8 @@ t1 = create_time_series()
 t = []
 for i in range(0, 749):
     x = []
-    for j in range(0, 12):
-        x.append(np.random.uniform(-15, 15) + t1[j])
+    for j in range(0, 10):
+        x.append(np.random.uniform(-10, 10) + t1[j])
     t.append(pd.Series(x, rng))
     # print(t[i])
     # t[i].plot(c="red", title="Example")
@@ -31,7 +31,7 @@ t2 = create_time_series()
 t2arr = []
 for i in range(0, 249):
     x = []
-    for j in range(0, 12):
+    for j in range(0, 10):
         x.append(np.random.uniform(-10, 10) + t2[j])
     t2arr.append(pd.Series(x, rng))
     # print(t2arr[i])

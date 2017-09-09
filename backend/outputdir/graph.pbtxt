@@ -2897,7 +2897,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: -0.6123724579811096
+        float_val: -0.612372457981
       }
     }
   }
@@ -2935,7 +2935,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 0.6123724579811096
+        float_val: 0.612372457981
       }
     }
   }
@@ -10826,7 +10826,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 0.009999999776482582
+        float_val: 0.00999999977648
       }
     }
   }
@@ -41505,7 +41505,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_76f6573aa6f0449a88d2932aede19d87/part"
+        string_val: "_temp_8b8d12e3633b4687b1dc762c0f596528/part"
       }
     }
   }
