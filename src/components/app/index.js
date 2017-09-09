@@ -8,12 +8,13 @@ import AppBar from 'material-ui/AppBar';
 import styles from './styles.scss';
 import DrawerContent from '../drawer';
 import Dashboard from '../dashboard';
-//import MenuItem from 'material-ui/MenuItem';
-//import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
+
+
 import { auth, provider } from '../../firebase';
 import Drawer from 'material-ui/Drawer';
-
-
+import {FlatButton} from 'material-ui';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -30,6 +31,7 @@ export default class App extends React.Component {
             open: false,
             addDialog: false,
             moreDialog: false,
+            groupDialog: false,
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.login = this.login.bind(this);
@@ -83,6 +85,14 @@ export default class App extends React.Component {
         this.setState({moreDialog: false});
     };
 
+    handleGroupOpen = () => {
+        this.setState({groupDialog: true});
+    };
+
+    handleGroupClose = () => {
+        this.setState({groupDialog: false});
+    };
+
     render() {
         const contentStyle = {  transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
 
@@ -97,6 +107,7 @@ export default class App extends React.Component {
                             style={{paddingLeft: this.state.open ? 320: 20}}
                             title= { 'Habits at CMU' }
                             onLeftIconButtonTouchTap={ this.handleToggle }
+                            iconElementRight={<FlatButton onClick={this.handleMoreOpen} label="Add" />}
                         />
                         <div
                             className={styles.container}
@@ -130,6 +141,38 @@ export default class App extends React.Component {
                             />
                         </Drawer>
                     </div>
+                    <Dialog
+                        title="More Info of Habit"
+                        modal={false}
+                        open={this.state.groupDialog}
+                    >
+                        <form onSubmit={(e) => this.addHabit(e)}>
+                            <TextField
+                                floatingLabelText="Habit Name"
+                                hintText="Cool name for your habit"
+                                name="hName"
+                                ref={(input) => this.input = input}
+                            /><br />
+                            <FlatButton
+                                style={{
+                                    display: 'inline-block',
+                                    float: 'right',
+                                }}
+                                label="Submit"
+                                type="submit"
+                                primary={true}
+                            />
+                            <FlatButton
+                                style={{
+                                    display: 'inline-block',
+                                    float: 'right',
+                                }}
+                                label="Cancel"
+                                primary={true}
+                                onClick={this.handleGroupClose()}
+                            />
+                        </form>
+                    </Dialog>
                 </div>
             </MuiThemeProvider>
         );

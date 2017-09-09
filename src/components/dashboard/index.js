@@ -5,8 +5,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import styles from './styles.scss';
 import TextField from 'material-ui/TextField';
-import { List, ListItem } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import { List } from 'material-ui/List';
+//import Checkbox from 'material-ui/Checkbox';
 import { getWeekNumber} from '../../utils/date';
 
 import firebase  from '../../firebase';
@@ -35,7 +35,6 @@ export default class Dashboard extends React.Component {
     }
 
     componentWillMount(){
-        /* Create reference to messages in Firebase Database */
         let hREf = firebase.database().ref('/users/' + this.userId + '/habits').orderByKey();
         hREf.on('value', (snapshot) => {
             let access = snapshot.val();
@@ -76,10 +75,20 @@ export default class Dashboard extends React.Component {
         e.preventDefault();
 
         if(this.input.getValue() !== ''){
-            firebase.database().ref('/users/'+ this.userId +'/habits/').push({
+            let key = firebase.database().ref('/habits/').push({
                 name: this.input.getValue(),
-                curatedId: 1,
+                type: 'Misc',
+            }).key;
+
+            firebase.database().ref(`/users/${this.userId}/habits`).child(key).update({
+                reccurenceTimes: 2,
+                recurrenceType: 'days',
             });
+
+            firebase.database().ref(`/users/${this.userId}/groups`).child('general').once('value', (sub) => {
+                firebase.database().ref(`/users/${this.userId}/groups`).child('general').set([...sub.val(), key]);
+            });
+
         }
         this.props.handleAddClose();
     }
@@ -117,11 +126,10 @@ export default class Dashboard extends React.Component {
                         <Card key={group} className={styles.cardLeft}>
                             <CardHeader
                                 title={group}
-                                subtitle="General"
                             />
                             <List>
                                 {
-                                    this.state.groups[group].map(element =>
+                                    /*   this.state.groups[group].map(element =>
                                         <ListItem
                                             key={this.state.habits[element].id}
                                             primaryText={this.state.habits[element].name}
@@ -142,7 +150,7 @@ export default class Dashboard extends React.Component {
                                                 }
                                             />}
                                         />
-                                    )}
+                                    )*/}
                             </List>
                             <CardActions>
                                 <FlatButton onClick={this.props.handleAddOpen} label="Add New Habit" />
