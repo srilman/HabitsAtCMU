@@ -1,0 +1,52 @@
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.label {
+    padding: 15px; 
+    flex: 0 100px;
+    text-align: right;
+}
+
+.data {
+    padding: 15px;    
+    flex: 1;
+}
+
+#header {
+    background-color: #EEEEEE;    
+    text-align: center;
+    border-bottom: 1px solid #666666;
+}
+
+#allday {
+    border-bottom: 1px solid #999999;
+
+    .label {
+        padding: 15px;
+        border-right: 1px solid #CCCCCC;
+    }
+}
+
+#times {
+    position: relative;
+
+    .label {
+        height: 50px;
+        padding: 15px;
+        border-right: 1px solid #999999;
+    }
+
+    .data {
+        border-bottom: 1px solid #CCCCCC;
+        padding: 0;
+        height: 50px;
+    }
+
+    .half {
+        height: 25px;
+        border-bottom: 1px solid #999999;
+    }
+    
+}
