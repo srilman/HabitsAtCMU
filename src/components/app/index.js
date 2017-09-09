@@ -28,7 +28,8 @@ export default class App extends React.Component {
         this.state = {
             user: null,
             open: false,
-            dialog: false,
+            addDialog: false,
+            moreDialog: false,
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.login = this.login.bind(this);
@@ -66,12 +67,20 @@ export default class App extends React.Component {
             });
     }
 
-    handleOpen = () => {
-        this.setState({dialog: true});
+    handleAddOpen = () => {
+        this.setState({addDialog: true});
     };
 
-    handleClose = () => {
-        this.setState({dialog: false});
+    handleAddClose = () => {
+        this.setState({addDialog: false});
+    };
+
+    handleMoreOpen = () => {
+        this.setState({moreDialog: true});
+    };
+
+    handleMoreClose = () => {
+        this.setState({moreDialog: false});
     };
 
     render() {
@@ -95,9 +104,12 @@ export default class App extends React.Component {
                         >
                             {this.state.user ?
                                 <Dashboard
-                                    dialog = {this.state.dialog}
-                                    handleOpen = {this.handleOpen}
-                                    handleClose = {this.handleClose}
+                                    addDialog = {this.state.addDialog}
+                                    moreDialog= {this.state.moreDialog}
+                                    handleAddOpen = {this.handleAddOpen}
+                                    handleAddClose = {this.handleAddClose}
+                                    handleMoreOpen = {this.handleMoreOpen}
+                                    handleMoreClose = {this.handleMoreClose}
                                 />
                                 :
                                 <div className="wrapper">
