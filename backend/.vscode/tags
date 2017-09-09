@@ -1,0 +1,19 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+create_time_series	../practice.py	/^def create_time_series():$/;"	kind:function	line:12
+matplotlib	../practice.py	/^import matplotlib$/;"	kind:namespace	line:5
+matplotlib	../practice.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:6
+np	../practice.py	/^import numpy as np$/;"	kind:namespace	line:3
+os	../practice.py	/^import os$/;"	kind:namespace	line:4
+pd	../practice.py	/^import pandas as pd$/;"	kind:namespace	line:2
+plt	../practice.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:6
+practice.py	../practice.py	1;"	kind:file	line:1
+random	../practice.py	/^import random$/;"	kind:namespace	line:7
+shutil	../practice.py	/^import shutil$/;"	kind:namespace	line:9
+tf	../practice.py	/^import tensorflow as tf$/;"	kind:namespace	line:1
+tf	../practice.py	/^import tensorflow as tf$/;"	kind:namespace	line:8
+to_csv	../practice.py	/^def to_csv(filename, N):$/;"	kind:function	line:17
