@@ -28,6 +28,7 @@ export default class App extends React.Component {
         this.state = {
             user: null,
             open: false,
+            dialog: false,
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.login = this.login.bind(this);
@@ -65,6 +66,14 @@ export default class App extends React.Component {
             });
     }
 
+    handleOpen = () => {
+        this.setState({dialog: true});
+    };
+
+    handleClose = () => {
+        this.setState({dialog: false});
+    };
+
     render() {
         const contentStyle = {  transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
 
@@ -85,7 +94,11 @@ export default class App extends React.Component {
                             style={contentStyle}
                         >
                             {this.state.user ?
-                                <Dashboard/>
+                                <Dashboard
+                                    dialog = {this.state.dialog}
+                                    handleOpen = {this.handleOpen}
+                                    handleClose = {this.handleClose}
+                                />
                                 :
                                 <div className="wrapper">
                                     <p>You must be logged in. Please login on the left.</p>

@@ -1,6 +1,19 @@
-.card {
-    max-width: 360px;
+.cardLeft {
+    min-width: 350px;
+    max-width: 500px;
+    height: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+.cardRight {
+    max-width: 300px;
+    height: 100%;
+    margin: 10px;
+    text-align: center;
 }
 .wrapper {
-    margin: 2px;
+
+    display: flex;
+    flex-flow: row wrap;
+
 }
