@@ -74,12 +74,15 @@ export default class App extends React.Component {
                             onLeftIconButtonTouchTap={ this.handleToggle }
                         />
                         <div className={styles.container}>
+                            <div className="wrapper">
+                                {this.state.user ?
+                                    <RaisedButton onClick={this.logout}>Log Out</RaisedButton>
+                                    :
+                                    <RaisedButton onClick={this.login}>Log In</RaisedButton>
+                                }
+                            </div>
                             <Dashboard />
                         </div>
-                        <AppBar
-                            title="Title"
-                            onLeftIconButtonTouchTap={this.handleToggle}
-                        />
                         <Drawer
                             docked={false}
                             width={300}
@@ -89,13 +92,6 @@ export default class App extends React.Component {
                             <MenuItem>Menu Item</MenuItem>
                             <MenuItem>Menu Item 2</MenuItem>
                         </Drawer>
-                        <div className="wrapper">
-                            {this.state.user ?
-                                <RaisedButton onClick={this.logout}>Log Out</RaisedButton>
-                                :
-                                <RaisedButton onClick={this.login}>Log In</RaisedButton>
-                            }
-                        </div>
                     </div>
                 </div>
             </MuiThemeProvider>
