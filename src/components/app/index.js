@@ -5,8 +5,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { teal400 } from 'material-ui/styles/colors';
 
 import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import Drawer from 'material-ui/Drawer';
+import styles from './styles.scss';
+//import MainDrawer from '../drawer';
+import Dashboard from '../dashboard';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -21,26 +22,29 @@ export default class App extends React.Component {
         this.state = {
             open: false,
         };
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
-    handleToggle = () => this.setState({open: !this.state.open});
+    handleToggle() {
+        this.setState({open: !this.state.open});
+    }
 
     render() {
+
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <AppBar
-                    title="Title"
-                    onLeftIconButtonTouchTap={this.handleToggle}
-                />
-                <Drawer
-                    docked={false}
-                    width={300}
-                    open={this.state.open}
-                    onRequestChange={(open) => this.setState({open})}
-                >
-                    <MenuItem>Menu Item</MenuItem>
-                    <MenuItem>Menu Item 2</MenuItem>
-                </Drawer>
+                <div>
+                    <div>
+                        <AppBar
+                            style={{paddingLeft: this.state.open ? 320: 20}}
+                            title= { 'Habits at CMU' }
+                            onLeftIconButtonTouchTap={ this.handleToggle }
+                        />
+                        <div className={styles.container}>
+                            <Dashboard />
+                        </div>
+                    </div>
+                </div>
             </MuiThemeProvider>
         );
     }

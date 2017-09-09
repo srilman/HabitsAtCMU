@@ -1,0 +1,35 @@
+.logo {
+        cursor: pointer;
+        font-size: 22px;
+        color: white;
+        padding-left: 40px;
+        height: 56px;
+}
+
+.menu {
+    color: white;
+    font-size: 14px;
+}
+
+.avatar {
+
+    div {
+        padding: 15px 0 20px 15px;
+        height: 45px;
+    }
+
+    .icon {
+        float: left;
+        display: block;
+        margin-right: 15px;
+        box-shadow: 0 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    span {
+        padding-top: 12px;
+        display: block;
+        color: white;
+        font-weight: 300;
+        text-shadow: 1px 1px #444;
+    }
+}
